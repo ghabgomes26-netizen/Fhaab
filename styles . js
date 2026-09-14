@@ -1,0 +1,90 @@
+const menuBtn = document.getElementById("menuBtn");
+const nav = document.getElementById("nav");
+const commandInput = document.getElementById("commandInput");
+const sendBtn = document.getElementById("sendBtn");
+const response = document.getElementById("response");
+// MENU MOBILE
+menuBtn.addEventListener("click", () => {
+  nav.classList.toggle("open");
+});
+// RESPOSTA DA BILLIE
+function talkToBillie(command) {
+  const text = command.toLowerCase().trim();
+  if (!text) {
+    return "Digite alguma coisa para falar comigo. 😊";
+  }
+  if (
+    text.includes("olá") ||
+    text.includes("ola") ||
+    text.includes("oi") ||
+    text.includes("hello")
+  ) {
+    return "Olá! 👋 Eu sou a BILLIE. Como posso ajudar?";
+  }
+  if (
+    text.includes("hora") ||
+    text.includes("horas")
+  ) {
+    const now = new Date();
+    return `Agora são ${now.toLocaleTimeString("pt-BR", {
+      hour: "2-digit",
+      minute: "2-digit"
+    })}. 🕐`;
+  }
+  if (
+    text.includes("ideia") ||
+    text.includes("ideias")
+  ) {
+    return "Que tal criar uma nova função para a BILLIE hoje? 💡";
+  }
+  if (
+    text.includes("agenda") ||
+    text.includes("compromisso") ||
+    text.includes("evento")
+  ) {
+    return "📅 No momento, ainda não consigo adicionar diretamente à sua agenda. Essa será uma das próximas funções!";
+  }
+  if (
+    text.includes("obrigado") ||
+    text.includes("obrigada") ||
+    text.includes("valeu")
+  ) {
+    return "De nada! 😎";
+  }
+  return `Entendi: "${command}". Ainda estou aprendendo, mas podemos melhorar isso juntos! 🚀`;
+}
+// ENVIAR COMANDO
+function sendCommand() {
+  const command = commandInput.value;
+  response.textContent = "BILLIE está pensando... 🤔";
+  setTimeout(() => {
+    response.textContent = talkToBillie(command);
+  }, 300);
+  commandInput.value = "";
+  commandInput.focus();
+}
+sendBtn.addEventListener("click", sendCommand);
+// ENTER PARA ENVIAR
+commandInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    sendCommand();
+  }
+});
+// BOTÕES RÁPIDOS
+const quickButtons = document.querySelectorAll(
+  ".quick-actions button"
+);
+quickButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const command = button.dataset.command;
+    commandInput.value = command;
+    sendCommand();
+  });
+});
+// FECHAR MENU AO CLICAR EM UM LINK
+const navLinks = document.querySelectorAll("#nav a");
+navLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    nav.classList.remove("open");
+  });
+});
