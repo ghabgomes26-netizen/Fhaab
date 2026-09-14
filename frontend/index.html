@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Assistente IA - Fhaab</title>
+  <style>
+    body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; padding: 20px; background:#f7fafc; }
+    .chat { max-width: 800px; margin: 0 auto; background: #fff; border-radius: 8px; padding: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);} 
+    .messages { height: 60vh; overflow: auto; border: 1px solid #eee; padding: 12px; border-radius: 6px; background:#fafafa }
+    .msg { margin-bottom: 12px }
+    .msg.user { text-align: right }
+    .msg .bubble { display: inline-block; padding: 8px 12px; border-radius: 12px; max-width: 80%; }
+    .msg.user .bubble { background: #2563eb; color: white }
+    .msg.assistant .bubble { background: #e6eef8; color: #0f172a }
+    form { display: flex; gap: 8px; margin-top: 12px }
+    input[type="text"] { flex: 1; padding: 8px 12px; border-radius: 8px; border: 1px solid #ddd }
+    button { padding: 8px 12px; border-radius: 8px; border: none; background:#2563eb; color:white }
+    .meta { font-size: 12px; color:#666; margin-top:8px }
+  </style>
+</head>
+<body>
+  <div class="chat">
+    <h2>Assistente IA - Fhaab</h2>
+    <div class="messages" id="messages"></div>
+
+    <form id="chat-form">
+      <input type="text" id="input-msg" placeholder="Escreva sua pergunta..." autocomplete="off" />
+      <button type="submit">Enviar</button>
+    </form>
+
+    <div class="meta">Rodando contra o endpoint /chat (backend). Configure OPENAI_API_KEY no servidor.</div>
+  </div>
+
+  <script src="/frontend/app.js"></script>
+</body>
+</html>
