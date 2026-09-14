@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+openai
+python-dotenv
+faiss-cpu
+numpy
+requests
+tqdm
+aiofiles
